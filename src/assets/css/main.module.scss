@@ -1,0 +1,787 @@
+/**************************
+******* Font Stacks *******
+***************************/
+@use "@fontsource/source-code-pro" as *;
+@use "@fontsource/source-code-pro/400.css" as *;
+@use "@fontsource/source-code-pro/400-italic.css" as *;
+
+/**************************
+***** Font Variations *****
+***************************/
+$font_weight_extra_light: 200;
+$font_weight_light: 300;
+$font_weight_normal: 400;
+$font_weight_medium: 500;
+$font_weight_semi_bold: 600;
+$font_weight_bold: 700;
+$font_weight_extra_bold: 800;
+$font_weight_black_heavy: 900;
+
+/**** Font Style ****/
+$font_style_normal: normal;
+$font_style_italic: italic;
+$font_style_oblique: oblique;
+$font_style_initial: initial;
+$font_style_inherit: inherit;
+
+/**** Font Sizes ****/
+$font_xl: 1.875rem;
+$font_lg: 1.5rem;
+$font_md: 1rem;
+$font_sm: 0.875rem;
+$font_xs: 0.75rem;
+
+/**** Typography ****/
+$h1_typo: 3.25rem;
+$h2_typo: 3rem;
+$h3_typo: 2.75rem;
+$h4_typo: 2.5rem;
+$h5_typo: 2.25rem;
+$h6_typo: 2rem;
+
+/**************************
+****** Color Pallete ******
+***************************/
+/*___Very dark blue-gray__*/
+$color_pallete_0: #010c12;
+
+/*___Dark vibrant green___*/
+$color_pallete_1: #0c8901;
+
+/*___Bright grass green___*/
+$color_pallete_2: #2ac20d;
+
+/*___Neon lime green______*/
+$color_pallete_3: #9bff00;
+
+/*___Electric green_______*/
+$color_pallete_4: #39ff12;
+
+/*___Very dark charcoal___*/
+$color_pallete_5: #1e1f21;
+
+/**********************
+**** Page Content *****
+***********************/
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+body {
+    background-color: $color_pallete_0;
+    font-family: "Source Code Pro";
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/*************************
+****** Content CSS *******
+**************************/
+.content_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+}
+
+/*************************
+******* Layout CSS *******
+**************************/
+.layout_container_wrapper {
+    margin: 0 auto;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+.layout_container {
+    height: auto !important;
+    min-height: 100%;
+    position: relative;
+}
+
+.layout_inline_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.layout_section_content {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+.layout_navbar_content {
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 1rem 0;
+}
+
+/*************************
+****** Section CSS *******
+**************************/
+.section_container_wrapper {
+    display: flex;
+    height: 100vh;
+    scroll-margin-top: -1rem;
+}
+
+.section_container {
+    width: 100%;
+    height: 100dvh;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/*************************
+**** Home Section CSS ****
+**************************/
+
+.home_container_wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.home_image_wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+/**** Home Image Container Area ****/
+
+.home_img_pentagram,
+.home_img_avatar {
+    display: flex;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+
+    /**** Tablets (portrait / iPads / Samsung Tab) ****/
+    @media (max-width: 884px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 93vh;
+    }
+
+    /**** Small Tablets & Large Phones (Galaxy Fold, Surface Duo, iPhone Plus) ****/
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 93vh;
+    }
+
+    /**** Phones (Regular phones, SE, Android) ****/
+    @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 93vh;
+    }
+}
+
+.pentagram_img {
+    width: 45vw;
+    height: auto;
+    object-fit: contain;
+    display: block;
+
+    /**** Tablets (portrait / iPads / Samsung Tab) ****/
+    @media (max-width: 884px) {
+        position: absolute;
+        bottom: -3rem;
+        left: 50%;
+        right: 50%;
+        transform: translateX(-50%);
+        width: 75vw;
+        height: auto;
+        z-index: 1000;
+        pointer-events: none;
+    }
+
+    /**** Small Tablets & Large Phones (Galaxy Fold, Surface Duo, iPhone Plus) ****/
+    @media (max-width: 768px) {
+        position: absolute;
+        bottom: -3rem;
+        left: 50%;
+        right: 50%;
+        transform: translateX(-50%);
+        width: 75vw;
+        height: auto;
+        z-index: 1000;
+        pointer-events: none;
+    }
+
+    /**** Phones (Regular phones, SE, Android) ****/
+    @media (max-width: 480px) {
+        position: absolute;
+        bottom: 0rem;
+        left: 50%;
+        right: 50%;
+        transform: translateX(-50%);
+        width: 90vw;
+        height: auto;
+        z-index: 1000;
+        pointer-events: none;
+    }
+}
+
+.avatar_img {
+    position: absolute;
+    bottom: -1.2rem;
+    top: auto;
+    left: 3rem;
+    width: auto;
+    height: 87vh;
+    object-fit: contain;
+    display: block;
+    z-index: 1000;
+    pointer-events: none;
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        position: absolute;
+        bottom: -3.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60vw;
+        height: auto;
+        z-index: 1000;
+        pointer-events: none;
+        bottom: -3.5rem;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 75vw;
+        height: auto;
+        bottom: -3rem;
+    }
+}
+
+/**** Home Description Area ****/
+
+.home_description_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15rem;
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        display: flex;
+        margin-top: 3.5rem;
+        justify-content: flex-start;
+        align-content: center;
+        font-size: $font_sm;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        display: flex;
+        margin-top: 2.5rem;
+        justify-content: flex-start;
+        align-content: center;
+        font-size: $font_sm;
+    }
+}
+
+.header_description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.header_title {
+    color: $color_pallete_2;
+    font-style: $font_style_italic;
+    font-weight: $font_weight_black_heavy;
+    line-height: 1.1;
+    font-size: 3em;
+    margin: 0;
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        font-size: 2rem;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        font-size: $font_lg;
+    }
+}
+
+.header_sub_title {
+    color: $color_pallete_2;
+    font-style: $font_style_italic;
+    font-weight: $font_weight_medium;
+    line-height: 1.2;
+    font-size: $font_lg;
+    text-align: center;
+    margin: 0;
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        font-size: 1rem;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        font-size: 0.7rem;
+    }
+}
+
+.header_title::after,
+.header_sub_title::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.download_cv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    width: 100%;
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        margin-top: 2rem;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        margin-top: 1rem;
+    }
+}
+
+.btn_download_cv {
+    cursor: pointer;
+    width: 13rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    border-radius: 16px;
+    border: 2.5px solid $color_pallete_2;
+    background-color: $color_pallete_0;
+    color: $color_pallete_2;
+    font-size: $font_sm;
+    margin: 0 auto;
+    margin-bottom: 15rem;
+
+    i {
+        display: flex;
+        align-items: center;
+        font-size: $font_sm;
+    }
+
+    &:hover {
+        background-color: $color_pallete_2;
+        color: $color_pallete_0;
+        font-weight: $font_weight_bold;
+    }
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        width: 9rem;
+        height: 2.5rem;
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        width: 8.5rem;
+        height: 1.5rem;
+        font-size: 0.6rem;
+        margin-bottom: 0rem;
+    }
+}
+
+/**** Home Footer Area ****/
+
+.home_section_footer_container_wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.home_section_footer_wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        font-size: 0.6rem;
+        justify-content: space-between;
+    }
+}
+
+.home_section_footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font_md;
+
+    i {
+        color: $color_pallete_2;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $color_pallete_1;
+        }
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        margin-left: -1rem;
+    }
+}
+
+/**** Social Media Icons Area ****/
+
+.home_social_media_icons_container_wrapper {
+    position: absolute;
+    top: 75%;
+    right: 2rem;
+    transform: translateY(-50%);
+    z-index: 999;
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        top: 50%;
+        right: 4%;
+    }
+}
+
+.social_media_links_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+.social_media_links {
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}
+
+/***************************
+**** Skills Section CSS ****
+****************************/
+
+.skills_container_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 6rem;
+    gap: 1rem;
+    box-sizing: border-box;
+    margin-top: -5rem;
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        display: flex;
+        justify-content: flex-center;
+        align-content: center;
+        font-size: $font_sm;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        display: flex;
+        justify-content: flex-center;
+        align-content: center;
+        font-size: $font_sm;
+        margin-left: 0rem;
+        padding: 1rem;
+    }
+}
+
+.skills_header_container {
+    position: relative;
+    display: block;
+}
+
+.skills_header_title {
+    margin-top: 7rem;
+    margin-bottom: 1rem;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid $color_pallete_2;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 12rem;
+}
+
+.skills_header_text {
+    color: $color_pallete_2;
+    font-weight: $font_weight_bold;
+    font-size: $font_md;
+}
+
+/* Individual skill row set */
+.skills_container_set {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 2px solid $color_pallete_2;
+    border-radius: 15px;
+    padding: 2.5rem;
+    gap: 2rem;
+    background-color: $color_pallete_0;
+    width: 92%;
+    height: 5.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: $color_pallete_2;
+        color: $color_pallete_0;
+        cursor: default;
+
+        .skills_tag {
+            color: $color_pallete_0;
+        }
+    }
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        display: flex;
+        justify-content: flex-center;
+        align-content: center;
+        font-size: $font_sm;
+        width: 100%;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        display: flex;
+        justify-content: flex-center;
+        align-content: center;
+        font-size: $font_sm;
+        margin-left: 0rem;
+        width: 100%;
+    }   
+}
+
+.skills_tag {
+    color: $color_pallete_2;
+    font-size: $font_lg;
+    width: 20rem;
+}
+
+.skill_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    width: 4rem;
+}
+
+.skills_description {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: flex-start;
+    padding-left: 5rem;
+
+    img,
+    svg {
+        height: 3rem;
+        width: auto;
+        object-fit: contain;
+        display: block;
+    }
+
+    /**** Tablets & Large Phones (iPad, Samsung Tab, Foldables) ****/
+    @media (min-width: 481px) and (max-width: 884px) {
+        display: none;
+    }
+
+    /**** Apple Smartphones & All Phones ****/
+    @media (min-width: 320px) and (max-width: 480px) {
+        display: none;
+    }  
+}
+
+/*******************************
+**** My Project Section CSS ****
+********************************/
+
+.projects_container_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 6rem;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.projects_header_container {
+    position: relative;
+    display: block;
+}
+
+.projects_header_title {
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid $color_pallete_2;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 12rem;
+}
+
+.projects_header_text {
+    color: $color_pallete_2;
+    font-weight: $font_weight_bold;
+    font-size: $font_md;
+}
+
+.projects_container_set {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    max-height: 70vh;
+    border: 2px solid $color_pallete_2;
+    border-radius: 25px;
+    padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+    gap: 2rem;
+    background-color: $color_pallete_0;
+    width: 92%;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable both-edges;
+}
+
+.projects_container_set::-webkit-scrollbar {
+    width: 1.2rem;
+    margin-right: 12px;
+}
+
+.projects_container_set::-webkit-scrollbar-track {
+    background-color: $color_pallete_0;
+    border-left: 2px solid $color_pallete_2;
+    border-radius: 10px;
+    margin-block: 10px;
+}
+
+.projects_container_set::-webkit-scrollbar-thumb {
+    background-color: $color_pallete_2;
+    border-radius: 10px;
+    border: 2px solid $color_pallete_0;
+}
+
+.card_description {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex: 1 1 45%;
+    border: 1px solid $color_pallete_2;
+    border-radius: 15px;
+    background-color: $color_pallete_0;
+    overflow: hidden;
+}
+
+.card_logo {
+    background-color: $color_pallete_2;
+    color: $color_pallete_0;
+    font-weight: $font_weight_bold;
+    font-size: $font_lg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    text-align: center;
+}
+
+.card_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    gap: 0.5rem;
+    color: $color_pallete_2;
+    flex: 1;
+}
+
+.card_text .title {
+    font-size: $font_md;
+    font-weight: $font_weight_bold;
+}
+
+.card_text .link {
+    font-size: $font_md;
+    opacity: 0.8;
+}

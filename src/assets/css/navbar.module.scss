@@ -1,0 +1,196 @@
+@use "@assets/css/main.module.scss" as *;
+
+/*************************
+******* Navbar CSS *******
+**************************/
+.navbar_container {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1.5rem;
+    position: fixed;
+    right: 6rem;
+    top: 2rem;
+    z-index: 1001;
+}
+
+.navbar_link_container {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+
+    @media (max-width: 884px) {
+        display: none;
+    }
+}
+
+.navbar_links {
+    align-items: center;
+    border: solid 0.3rem $color_pallete_2;
+    cursor: pointer;
+    display: flex;
+    font-size: $font_sm;
+    font-weight: $font_weight_extra_light;
+    height: 65px;
+    justify-content: center;
+    transform: skew(-38deg);
+    transition: all 0.3s ease;
+    width: 170px;
+
+    a {
+        color: $color_pallete_2;
+        text-decoration: none;
+        transform: skew(38deg);
+    }
+
+    &:hover a {
+        font-weight: $font_weight_extra_bold;
+        color: $color_pallete_0;
+        font-size: $font-md;
+    }
+
+    &:hover {
+        background-color: $color_pallete_2;
+        color: $color_pallete_0;
+        font-weight: $font_weight_extra_bold;
+        margin-top: -0.6rem;
+        box-shadow:
+            0.4rem 0.4rem $color_pallete_0,
+            0.6rem 0.6rem $color_pallete_2;
+    }
+
+    &.navbar_active {
+        background-color: $color_pallete_2;
+        color: $color_pallete_0;
+        font-weight: $font_weight_extra_bold;
+        margin-top: -0.6rem;
+        box-shadow:
+            0.4rem 0.4rem $color_pallete_0,
+            0.6rem 0.6rem $color_pallete_2;
+
+        a {
+            color: $color_pallete_0;
+            font-size: $font-md;
+        }
+    }
+}
+
+/**************************
+*** Mobile Toggle Menu ****
+***************************/
+.navbar_menu_toggle {
+    display: none;
+    width: 43px;
+    height: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    transition: transform 0.3s ease;
+    z-index: 9999;
+    background: $color_pallete_0;
+    border: none;
+    padding: 0;
+
+    span {
+        display: block;
+        height: 5px;
+        width: 100%;
+        background: $color_pallete_2;
+        border-radius: 2px;
+        position: absolute;
+        left: 0;
+        transition: all 0.3s ease;
+    }
+
+    span:nth-child(1) {
+        top: 0;
+    }
+
+    span:nth-child(2) {
+        top: 13px;
+    }
+
+    span:nth-child(3) {
+        bottom: 0;
+    }
+
+    &.active span:nth-child(1) {
+        transform: rotate(45deg);
+        top: 12px;
+    }
+
+    &.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    &.active span:nth-child(3) {
+        transform: rotate(-45deg);
+        bottom: 12px;
+    }
+
+    @media (max-width: 884px) {
+        display: block;
+    }
+}
+
+.mobile_menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba($color_pallete_0, 0.95);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    padding-top: 80px;
+
+    &.mobile_menu_open {
+        transform: translateY(0);
+    }
+}
+
+.mobile_menu_links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    li {
+        margin: 2rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            color: $color_pallete_2;
+            font-size: $font_lg;
+            font-weight: $font_weight_bold;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-align: center;
+            height: 5rem;
+
+            &:hover {
+                color: $color_pallete_0;
+                background-color: $color_pallete_1;
+            }
+
+            &.mobile_active {
+                background-color: $color_pallete_2;
+                color: $color_pallete_0;
+            }
+        }
+    }
+}
