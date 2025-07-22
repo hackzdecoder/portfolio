@@ -7,8 +7,8 @@ import avatar_img from "@assets/img/avatar.png";
 
 const Index = () => {
 
-    const [title, setTitle] = useState("");
-    const [subtitle, setSubtitle] = useState("");
+    const [title, setTitle] = useState(false);
+    const [subtitle, setSubtitle] = useState(false);
 
     useEffect(() => {
         const headerTitle = "<Hi, I'm Paul John/>";
