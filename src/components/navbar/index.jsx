@@ -1,128 +1,86 @@
-import { useViewContext } from "@context";
-import React, { useEffect, useRef, useState } from "react";
-import stylesheet from "@assets/css/navbar.module.scss";
+import React, { useState, useEffect, useRef } from "react";
+import styles from "@assets/css/navbar.module.scss";
 
 const Navbar = () => {
-
-    const { activeStatePage, setStateActivePage } = useViewContext();
-
-    const watchActiveRef = useRef([]);
-    const preventAutloadRef = useRef([]);
-
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState("about");
+    const sectionRefs = useRef({});
 
     useEffect(() => {
-        const pageIdentifier = ["about", "skills", "projects"];
-        const sectionContent = pageIdentifier.map((id) => document.getElementById(id)).filter(Boolean);
+        const handleScroll = () => {
+            const scrollPos = window.scrollY + 100; // offset for detection
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    entry.isIntersecting ? setStateActivePage(entry.target.id) : false;
-                });
-            }, { threshold: 0.6 }
-        );
+            Object.entries(sectionRefs.current).forEach(([key, ref]) => {
+                if (!ref) return;
+                const top = ref.offsetTop;
+                const bottom = top + ref.offsetHeight;
 
-        sectionContent.forEach((section) => observer.observe(section));
-        watchActiveRef.current = observer;
-
-        return () => {
-            watchActiveRef.current ? watchActiveRef.current.disconnect() : false;
-            clearTimeout(preventAutloadRef.current);
+                if (scrollPos >= top && scrollPos < bottom) {
+                    setActiveLink(key);
+                }
+            });
         };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleScrollTo = (id, event) => {
-        event.preventDefault();
+    const handleLinkClick = (id) => {
         setMenuOpen(false);
-        setStateActivePage(id);
-
-        watchActiveRef.current === true ? watchActiveRef.current.disconnect() : false;
-
-        const pageLoadContent = setInterval(() => {
-            const targetSection = document.getElementById(id);
-
-            if (targetSection) {
-                clearInterval(pageLoadContent);
-                targetSection.scrollIntoView({ behavior: "smooth" });
-                setStateActivePage(id);
-
-                preventAutloadRef.current = setTimeout(() => {
-                    const pageIdentifier = ["about", "skills", "projects"];
-                    const sections = pageIdentifier.map((id) => document.getElementById(id)).filter(Boolean);
-
-                    const observer = new IntersectionObserver(
-                        (entries) => {
-                            entries.forEach((entry) => {
-                                entry.isIntersecting
-                                    ? setStateActivePage(entry.target.id)
-                                    : false;
-                            });
-                        },
-                        { threshold: 0.6 }
-                    );
-
-                    sections.forEach((section) => observer.observe(section));
-                    watchActiveRef.current = observer;
-                }, 800);
-            }
-        }, 50);
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     };
 
+    useEffect(() => {
+        ["about", "skills", "projects"].forEach((id) => {
+            sectionRefs.current[id] = document.getElementById(id);
+        });
+    }, []);
+
     return (
-        <nav className={stylesheet.navbar_container}>
-            <button
-                className={`${stylesheet.navbar_menu_toggle} ${menuOpen ? stylesheet.active : ''}`}
-                onClick={() => setMenuOpen(!menuOpen)}
-                aria-label="Toggle menu"
-                aria-expanded={menuOpen}
-            >
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </button>
-
-            <ul className={stylesheet.navbar_link_container}>
-                <li
-                    className={`${stylesheet.navbar_links} ${activeStatePage === "about" ? stylesheet.navbar_active : ""}`}
-                    onClick={(e) => handleScrollTo("about", e)}
+        <React.Fragment>
+            <nav className={styles.navbar_container}>
+                <ul className={styles.navbar_link_container}>
+                    {["about", "skills", "projects"].map((id) => (
+                        <li
+                            key={id}
+                            className={`${styles.navbar_links} ${activeLink === id ? styles.navbar_active : ""
+                                }`}
+                            onClick={() => handleLinkClick(id)}
+                        >
+                            <a>{id.charAt(0).toUpperCase() + id.slice(1)}</a>
+                        </li>
+                    ))}
+                </ul>
+                <button
+                    className={`${styles.navbar_menu_toggle} ${menuOpen ? styles.active : ""
+                        }`}
+                    onClick={() => setMenuOpen(!menuOpen)}
                 >
-                    <a href="#">About Me</a>
-                </li>
-                <li
-                    className={`${stylesheet.navbar_links} ${activeStatePage === "skills" ? stylesheet.navbar_active : ""}`}
-                    onClick={(e) => handleScrollTo("skills", e)}
-                >
-                    <a href="#">Skills</a>
-                </li>
-                <li
-                    className={`${stylesheet.navbar_links} ${activeStatePage === "projects" ? stylesheet.navbar_active : ""}`}
-                    onClick={(e) => handleScrollTo("projects", e)}
-                >
-                    <a href="#">My Projects</a>
-                </li>
-            </ul>
-
-            <div className={`${stylesheet.mobile_menu} ${menuOpen ? stylesheet.mobile_menu_open : ''}`}>
-                <ul className={stylesheet.mobile_menu_links}>
-                    <li onClick={(e) => handleScrollTo("about", e)}>
-                        <a className={activeStatePage === "about" ? stylesheet.mobile_active : ""}>
-                            About Me
-                        </a>
-                    </li>
-                    <li onClick={(e) => handleScrollTo("skills", e)}>
-                        <a className={activeStatePage === "skills" ? stylesheet.mobile_active : ""}>
-                            Skills
-                        </a>
-                    </li>
-                    <li onClick={(e) => handleScrollTo("projects", e)}>
-                        <a className={activeStatePage === "projects" ? stylesheet.mobile_active : ""}>
-                            My Projects
-                        </a>
-                    </li>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+            
+            <div
+                className={`${styles.mobile_menu} ${menuOpen ? styles.mobile_menu_open : "" }`}>
+                <ul className={styles.mobile_menu_links}>
+                    {["about", "skills", "projects"].map((id) => (
+                        <li key={id}>
+                            <a
+                                className={activeLink === id ? styles.mobile_active : ""}
+                                onClick={() => handleLinkClick(id)}
+                            >
+                                {id.charAt(0).toUpperCase() + id.slice(1)}
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </div>
-        </nav>
+        </React.Fragment>
     );
 };
 

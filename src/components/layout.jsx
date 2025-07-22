@@ -1,17 +1,19 @@
-
-import Navbar from "@components/navbar";
+import React from "react";
 import stylesheet from "@assets/css/main.module.scss";
+import Navbar from "@components/navbar";
 
 export default function Layout({ children }) {
     return (
-        <div className={stylesheet.layout_container_wrapper}>
+        <div className={stylesheet.layout_wrapper}>
             <div className={stylesheet.layout_container}>
-                <div className={stylesheet.layout_inline_container}>
-                    <div className={stylesheet.layout_navbar_content}>
-                        <Navbar />
+                <div className={stylesheet.layout_navbar}>
+                    <div className={stylesheet.layout_container}>
+                        <Navbar/>
                     </div>
-                    <div className={stylesheet.layout_section_content}>
-                        {children}
+                </div>
+                <div className={stylesheet.layout_main_wrapper}>
+                    <div className={stylesheet.layout_main_container}>
+                        { children }
                     </div>
                 </div>
             </div>

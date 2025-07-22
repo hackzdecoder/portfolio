@@ -1,49 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { useViewContext } from '@context';
+import React from "react";
 import stylesheet from "@assets/css/main.module.scss";
+import Layout from "@components/layout";
 
-import Home from "@pages/home";
-import Skills from "@pages/skills";
-import Projects from "@pages/projects";
+import AboutSection from "@pages/about-me";
+import SkillSection from "@pages/skills";
+import ProjectSection from "@pages/projects";
 
 export default function Content() {
-    const { activeStatePage } = useViewContext();
-    const [loadContext, setLoadContext] = useState(["about"]);
-
-    useEffect(() => {
-        !loadContext.includes(activeStatePage)
-            ? (setLoadContext(prev => [...prev, activeStatePage]))
-            : false;
-    }, [activeStatePage]);
-
-    const invokeContext = (id) => activeStatePage && loadContext.includes(id);
-
     return (
-        <div className={stylesheet.content_wrapper}>
-            {invokeContext('about') && (
-                <section id="about" className={stylesheet.section_container_wrapper}>
-                    <div className={stylesheet.section_container}>
-                        <Home />
+        <Layout>
+            <div className={stylesheet.content_wrapper}>
+                <div className={stylesheet.content_main_container}>
+                    <div className={stylesheet.content_section_wrapper}>
+                        <div className={stylesheet.content_section_container}>
+                            <AboutSection />
+                        </div>
                     </div>
-                </section>
-            )}
-
-            {invokeContext('skills') && (
-                <section id="skills" className={stylesheet.section_container_wrapper}>
-                    <div className={stylesheet.section_container}>
-                        <Skills />
+                    <div className={stylesheet.content_section_wrapper}>
+                        <div className={stylesheet.content_section_container}>
+                            <SkillSection />
+                        </div>
                     </div>
-                </section>
-            )}
-
-            {invokeContext('projects') && (
-                <section id="projects" className={stylesheet.section_container_wrapper}>
-                    <div className={stylesheet.section_container}>
-                        <Projects />
+                    <div className={stylesheet.content_section_wrapper}>
+                        <div className={stylesheet.content_section_container}>
+                            <ProjectSection />
+                        </div>
                     </div>
-                </section>
-            )}
-
-        </div>
+                </div>
+            </div>
+        </Layout>
     );
 }
