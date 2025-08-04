@@ -7,9 +7,7 @@ export default function Layout({ children }) {
         <div className={stylesheet.layout_wrapper}>
             <div className={stylesheet.layout_container}>
                 <div className={stylesheet.layout_navbar}>
-                    <div className={stylesheet.layout_container}>
-                        <Navbar/>
-                    </div>
+                    <Navbar/>
                 </div>
                 <div className={stylesheet.layout_main_wrapper}>
                     <div className={stylesheet.layout_main_container}>

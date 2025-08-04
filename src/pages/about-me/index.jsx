@@ -57,13 +57,22 @@ const Index = () => {
                 <div className={stylesheet.section_about_social_media_wrapper}>
                     <ul className={stylesheet.section_about_social_media_icons}>
                         <li>
-                            <a href="#"><RiGitBranchLine /></a>
+                            <a href="#">
+                                <RiGitBranchLine />
+                                <span>GitHub</span>
+                            </a>
                         </li>
                         <li>
-                            <a href="#"><RiFacebookBoxLine /></a>
+                            <a href="#">
+                                <RiFacebookBoxLine />
+                                <span>Facebook</span>
+                            </a>
                         </li>
                         <li>
-                            <a href="#"><RiTelegram2Line /></a>
+                            <a href="#">
+                                <RiTelegram2Line />
+                                <span>Telegram</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
